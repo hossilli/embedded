@@ -1,0 +1,31 @@
+void main() {
+  int X;
+  char data;
+  ANSELA = 0xFF;
+  ANSELD=0;
+  TRISA = 0xFF;
+  TRISD=0;
+  UART1_Init(9600);
+  Delay_ms(10);
+  UART_Write_Text("HELLO");
+
+  while(1)
+{
+  X = ADC_Read(1);
+
+   if(X > 1000)
+   {
+   UART1_Write_Text("OPEN");
+   UART1_Write(13);
+   UART1_Write(10);
+   PORTD = 0xFF;
+   }
+   else
+   {
+   UART1_Write_Text("CLOSED");
+   UART1_Write(13);
+   UART1_Write(10);
+   PORTD = 0x00; 
+   }
+  }
+  }
